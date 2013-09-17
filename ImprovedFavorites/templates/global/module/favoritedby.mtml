@@ -1,0 +1,14 @@
+<mt:var name="favorited" value="0">
+<$mt:EntryScoreCount namespace="community_pack_recommend" setvar="favorited"$>
+<mt:if name="favorited">
+
+<div style="width:185px; border:1px solid #C3C3C3; padding:5px; background-color:#F7F6EF; display: table; table-layout: fixed; overflow:hidden;" class="subcolumns_like">
+
+<mt:entryfavoritedby>
+     <div class="imgwrapper_like" style="float:left;" >
+		<a href="<mt:cgipath><mt:communityscript>?_mode=view&id=<mt:authorid>" title="<mt:authordisplayname encode_html="1">"><img alt="<mt:authordisplayname encode_html="1">" name="<mt:authordisplayname encode_html="1">" src="<mt:if tag="authoruserpic"><$mt:AuthorUserpicURL$><mt:else>http://mein.salzburg.com/mt-static/support/assets_c/userpics/dummy.png</mt:if>" class="imgteaser_like" style="width:55px; height:55px; margin:3px;" /></a>
+	</div>
+</mt:entryfavoritedby>
+
+</div>
+</mt:if>
