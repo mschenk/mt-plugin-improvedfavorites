@@ -38,6 +38,33 @@ sub hdlr_entryfavoritedby {
         return $out;
 }
 
+sub hdlr_unregisteredfavoritecount {
+	# This function returns the number of favorites on an entry made by unregistered users
+	my ($ctx, $args, $cond) = @_;
+	require MT::ObjectScore;
+	require MT::Entry;
+	require MT::App::Community;     
+	
+	# Check if there is actually an entry in context...
+	my $entry = $ctx->stash('entry')
+        || $ctx->error(MT->translate('You used an [_1] tag outside of the proper context.', 'EntryFavoritedBy'));
+        
+        
+        my $count = 0;
+        
+        # Load the anonymous authors that have favorited this entry
+       $count = MT::ObjectScore->count({
+       		       'author_id' => 0, 
+       		       object_id => $entry->id,
+       		       object_ds => MT::Entry->datasource,
+       		       namespace => MT::App::Community->NAMESPACE()
+       });
+       MT->log('Count : '.$count);
+        
+        return $count;
+}
+
+
 sub objectscore_post_save {
 	# This callback function gets called every time an objectscore object is saved
 	# If the objectscore refers to an entry, rebuild the entry in question +

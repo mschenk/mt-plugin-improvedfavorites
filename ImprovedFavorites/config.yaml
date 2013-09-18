@@ -5,13 +5,15 @@ author_name: Maarten Schenk
 description: "This plugin extends the favoriting mechanism built into the Community Pack for Movable Type.  Include the 'Entry Favorited By' module in the Entry template to get a graphical representation of the authors who favorited an entry."
 plugin_link: http://www.movabletips.com/
 doc_link: http://www.movabletips.com/
-version: 1.1
+version: 1.2
 static_version: 1.1
 schema_version: 1.1
 
 tags:
     block:
         EntryFavoritedBy: $ImprovedFavorites::ImprovedFavorites::Plugin::hdlr_entryfavoritedby
+    function:
+        UnregisteredFavoriteCount: $ImprovedFavorites::ImprovedFavorites::Plugin::hdlr_unregisteredfavoritecount
 
 callbacks:
   MT::ObjectScore::post_save: $ImprovedFavorites::ImprovedFavorites::Plugin::objectscore_post_save
